@@ -12,7 +12,7 @@ import useButton from '../../../Hooks/useButton';
 const Count = () => {
   const btn = useButton({ children: "Contact us" })
   return (
-    <div className='w-screen bg-base-200 pt-44'>
+    <div className='w-screen bg-base-200 pt-44 pb-32'>
       <div className='text-center mb-8'>
         <h2 className='text-4xl font-bold text-primary'>TRUSTED WHOLE WORLD</h2>
         <p className='font-semibold text-lg'>Connect with us to know our Faithfulness</p>
@@ -60,7 +60,7 @@ const Count = () => {
 
       </div>
       
-      <div class="hero h-56 w-screen lg:h-32 lg:w-1/2 mx-auto lg:rounded-3xl bg-white">
+      <div class="hero h-56 w-screen lg:h-32 lg:w-1/2 mx-auto lg:rounded-3xl bg-white mt-12">
   <div class="hero-content flex-col lg:flex-row">
     <div>
     <h3 className='text-3xl font-bold '>If you have any question about us</h3>

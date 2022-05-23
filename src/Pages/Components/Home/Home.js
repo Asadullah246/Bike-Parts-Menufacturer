@@ -2,8 +2,10 @@ import React from 'react';
 import Banner from './Banner';
 import Count from './Count';
 import Discount from './Discount';
+import Footer from './Footer';
 import Guarantee from './Guarantee';
 import Parts from './Parts';
+import Reviews from './Reviews';
 
 const Home = () => {
 
@@ -14,6 +16,8 @@ const Home = () => {
             <Parts></Parts>
             <Discount></Discount>
             <Count></Count>
+            <Reviews></Reviews>
+            <Footer></Footer>
             
         </div>
     );

@@ -6,7 +6,7 @@ import moneyBack from "../../../Images/Logos/dollar.png"
 
 const Guarantee = () => {
     return (
-        <div  className=''>
+        <div  className='mt-36 mb-20'>
             <h2 className='text-center text-3xl text-primary font-bold mt-16'>OUR SPECIAL SERVICES</h2>
             <div className='grid  grid-cols-2 lg:grid-cols-4 md:grid-cols-2 bg-white px-4 my-8'>
                 <div class="hero">

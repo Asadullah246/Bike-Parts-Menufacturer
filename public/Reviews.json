@@ -1,0 +1,22 @@
+[
+    {
+       "name": "Kamal",
+       "image": "https://i.ibb.co/Bf7LKwk/2-400x300.jpg",
+       "comment": "This products is very good. I have bought from this company since 2 years",
+       "rating":5
+    },
+    {
+       "name": "Maruf",
+       "image": "",
+       "comment": "Good product and good service after sale",
+       "rating": 4
+    },
+    {
+       "name": "Nahid",
+       "image": "",
+       "comment": "I have some problem with my product. And I suffered for this product",
+       "rating": 3
+    }
+
+]
+

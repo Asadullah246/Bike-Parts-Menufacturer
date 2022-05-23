@@ -29,8 +29,8 @@ const Navbar = () => {
                         <li><NavLink style={actived} to='/blogs'>Blogs</NavLink></li>
                     </ul>
                 </div>
-                <img src={navLogo} alt="Navbar logo" className='max-w-[32px] lg:h-auto' />
-                <Link to="/" class="btn btn-ghost normal-case text-3xl pl-2">MYPARTS</Link>
+                <img src={navLogo} alt="Navbar logo" className='w-[24px] lg:w-[32px] lg:h-auto' />
+                <Link to="/" class="btn btn-ghost normal-case text-xl md:text-2xl lg:text-3xl pl-2">MYPARTS</Link>
             </div>
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal p-0">
@@ -45,7 +45,7 @@ const Navbar = () => {
                     <li><NavLink style={actived} to='/blogs'>Blogs</NavLink></li>
                 </ul>
             </div>
-            <div class="navbar-end">
+            <div class="navbar-end mr-12 lg:mr-4">
                 <Link to='/aboutMe'>About Me</Link>
             </div>
         </div>
