@@ -1,36 +1,22 @@
 import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
     return (
         <div>
-            {/* <div class="drawer drawer-end">
-                <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
-                <div class="drawer-content">
-                 
-                    <label for="my-drawer-4" class="drawer-button btn btn-primary">Open drawer</label>
+            <div className="drawer drawer-mobile">
+                <input id="dashboard" type="checkbox" className="drawer-toggle" />
+                <div className="drawer-content flex flex-col">
+                    <Outlet></Outlet>
                 </div>
-                <div class="drawer-side">
-                    <label for="my-drawer-4" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+                <div className="drawer-side">
+                    <label for="dashboard" className="drawer-overlay"></label>
+                    <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
                         
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
-                    </ul>
-                </div>
-            </div> */}
-            <div class="drawer drawer-mobile">
-                <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-                <div class="drawer-content flex flex-col items-center justify-center">
-                    {/* <!-- Page content here --> */}
-                    <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                        <li><Link to='/dashboard'>My Orders</Link></li>
+                        <li><Link to='/dashboard/myReview'>Add Review</Link></li>
+                        <li><Link to='/dashboard/myProfile'>My Profile</Link></li>
 
-                </div>
-                <div class="drawer-side">
-                    <label for="my-drawer-2" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-                        {/* <!-- Sidebar content here --> */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
                     </ul>
 
                 </div>
