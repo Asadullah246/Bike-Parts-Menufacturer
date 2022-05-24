@@ -10,7 +10,7 @@ const Purchase = () => {
     const { id } = useParams();
     const [partError, setPartError] = useState('');
     const [amount, setAmount] = useState(0);
-    const [success, setSuccess] = useState('');
+    const [success, setSuccess] = useState("");
     const [user] = useAuthState(auth)
     const [sellingQuantity, setSellingQuantity] = useState(0);
 
@@ -21,24 +21,9 @@ const Purchase = () => {
         }).then(res =>
             res.json())
     )
-    const { name, description, price, image, quantity, minimumOrder } = data;
-    console.log(data);
 
     const {
         register, handleSubmit, formState: { errors }, } = useForm();
-    const orderQuantity = e => {
-        const value = e.target.value;
-        if (value < minimumOrder || value > quantity) {
-            setPartError('Quantity must be between 10 and 100');
-            setAmount('');
-            setSuccess("")
-        }
-        else {
-            setAmount(value * price)
-            setPartError('');
-            setSuccess("")
-        }
-    }
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -46,58 +31,91 @@ const Purchase = () => {
         setPartError(error?.message)
         return;
     }
-    const onSubmit = async data => {
-        const url = `http://localhost:5000/orders`;
-        const body = {
-            name: data.name,
-            email: data.email,
-            phone: data.number,
+    // const {name, price, quantity, description, image, minimumOrder} = data;
+    const orderQuantity = e => {
+        const value = e.target.value;
+        if (value < data.minimumOrder || value > data.quantity) {
+            setPartError('Quantity must be between 10 and 100');
+            setAmount(0);
+            setSuccess("")
+        }
+        else {
+            setSellingQuantity(value);
+            setAmount(value * data.price)
+            setPartError('');
+            setSuccess("")
+        }
+    }
+
+    const onSubmit = async (itemData) => {
+        const url = "http://localhost:5000/orders";
+        const order = {
+            name: user.displayName,
+            email: user.email,
+            phone: itemData.number,
             totalPrice: amount,
             userId: user?.uid
         }
         await fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json' 
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(order)
         })
-        .then(res => res.json())
-        // .then(partData=>{
-        //     // setSuccess(data?.message)
-        //     // const body={
-        //     //     quantity: data.quantity - sellingQuantity,
-        //     // }
-        //     //  fetch(`http://localhost:5000/parts/${id}`, {
-        //     //     method: 'PUT',
-        //     //     headers:{
-        //     //         'Content-Type': 'application/json'
-        //     //     },
-        //     //     body: JSON.stringify(body)
+            .then(res => res.json())
+            .then(partData => {
 
-        //     // })
+                if (partData.success) {
+                    const body = {
+                        quantity: parseInt(data.quantity) - parseInt(sellingQuantity),
+                    }
+                    console.log("bou", data.quantity, "and", sellingQuantity);
+                    fetch(`http://localhost:5000/parts/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
 
-        //     // console.log("pat is", partData);
+                    })
+                        .then(res => res.json())
+                        .then(res => {
+                            if (res.success) {
+                                setSuccess("Order placed successfully")
+                                setAmount(0);
+                                setSellingQuantity(0);
+                                refetch()
+                            }
+                            else{
+                                setSuccess("Order failed due to quantity")
+                            }
+                        })
 
-        //     })
-        
+                }
+                else {
+                    setSuccess("Order failed")
+
+                }
+            })
+
     }
 
     return (
         <div className='bg-base-200'>
             <div className="hero min-h-screen  pt-8 ">
                 <div className="hero-content flex-col  lg:flex-row">
-                    <div className='md:w-3/4 mb-8 lg:w-1/2 px-8'>
-                        <img src={image} className="w-full  rounded-lg shadow-2xl " alt='img' />
+                    <div className='md:w-3/4 mb-8 lg:w-2/3 lg:px-8'>
+                        <img src={data.image} className="w-full  rounded-lg shadow-2xl " alt='img' />
 
                     </div>
-                    <div className='text-left md:w-3/4 lg:w-1/2 px-8'>
-                        <h1 className="text-5xl font-bold">{name}</h1>
+                    <div className='text-left md:w-3/4 lg:w-1/2 lg:px-8'>
+                        <h1 className="text-5xl font-bold">{data.name}</h1>
 
-                        <p className="py-6 font-semibold">{description}</p>
-                        <p className='font-bold'>price: {price}$</p>
-                        <p className='font-bold'>total quantity: {quantity} </p>
-                        <p className='font-bold'>Minimum order quantity: {minimumOrder} </p>
+                        <p className="py-6 font-semibold">{data.description}</p>
+                        <p className='font-bold'>price: {data.price}$</p>
+                        <p className='font-bold'>total quantity: {data.quantity} </p>
+                        <p className='font-bold'>Minimum order quantity: {data.minimumOrder} </p>
                         <div className="form-control w-full max-w-xs">
 
                             <label className="label">
@@ -119,14 +137,14 @@ const Purchase = () => {
 
             <h3 className='text-center font-bold text-3xl my-8'>Fill the form to complete the order</h3>
             <div className='pb-16'>
-                <div className="card lg:w-[700px] bg-base-100 shadow-xl mx-auto">
+                <div className="card w-10/12 lg:w-[700px] bg-base-100 shadow-xl mx-auto">
                     <div className="card-body items-center text-center">
                         <form className='w-2/3' onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control w-full ">
                                 <label className="label">
                                     <span className="label-text">Give your name</span>
                                 </label>
-                                <input type="text" placeholder="Type here" name='name' className="input input-bordered w-full" value={user.displayName} disabled />
+                                <input type="text" placeholder="Type here" name='name' className="input input-bordered w-full" value={user?.displayName} disabled />
                                 <label className="label">
                                 </label>
                             </div>
@@ -134,7 +152,7 @@ const Purchase = () => {
                                 <label className="label">
                                     <span className="label-text">Give your email</span>
                                 </label>
-                                <input type="email" placeholder="Type here" name='email' className="input input-bordered w-full" value={user.email} disabled />
+                                <input type="email" placeholder="Type here" name='email' className="input input-bordered w-full" value={user?.email} disabled />
                                 <label className="label"> </label>
                             </div>
                             <div className="form-control w-full ">
@@ -166,6 +184,7 @@ const Purchase = () => {
                                     {errors.number?.type === 'required' && <span className="label-text-alt text-red-500">{errors.number.message}</span>}
                                 </label>
                             </div>
+                            <span>{success} </span>
                             <span>{success} </span>
                             <button className='duration-500 text-black bg-[#94C300] font-bold hover:bg-[#7f9e1c] hover:text-white w-full py-3 my-8 rounded-xl text-xl' type="submit" value="Login" >Order</button>
                         </form>

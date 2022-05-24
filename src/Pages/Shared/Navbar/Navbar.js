@@ -17,7 +17,7 @@ const Navbar = () => {
         auth.signOut();
     }
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -36,7 +36,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <img src={navLogo} alt="Navbar logo" className='w-[24px] lg:w-[32px] lg:h-auto' />
-                <Link to="/" className="btn btn-ghost normal-case text-xl md:text-2xl lg:text-3xl pl-2">MYPARTS</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-xl md:text-2xl lg:text-3xl lg:pl-2">MYPARTS</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -54,7 +54,7 @@ const Navbar = () => {
                     <li><NavLink style={actived} to='/aboutMe'>About Me</NavLink></li>
                 </ul>
             </div>
-            <div className="navbar-end pr-8 lg:hidden">
+            <div className="navbar-end lg:pr-8 lg:hidden">
                 <div className='flex-none lg:hidden'>
                 <label for="dashboard" className="btn  btn-ghost">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>

@@ -1,6 +1,13 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 
 const Orders = () => {
+    const { isLoading, error, data } = useQuery('repoData', () =>
+    fetch('http://localhost:5000/orders').then(res =>
+      res.json()
+    )
+  )
+
     return (
         <div className='w-full md:w-11/12 lg:w-2/3 mx-auto my-8'>
             <h3 className='text-3xl font-bold text-primary text-center my-8'>MY ORDERS</h3>
