@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import auth from '../../../Firebase.init';
+import Loading from '../../Shared/Navbar/Loading';
 
 const Orders = () => {
-    const { isLoading, error, data } = useQuery('repoData', () =>
-    fetch('http://localhost:5000/orders').then(res =>
-      res.json()
+    const [dataError, setDataError] = useState("");
+    const [user] = useAuthState(auth);
+    const { isLoading, error, data } = useQuery('orders', () =>
+        fetch('http://localhost:5000/orders', {
+            method: 'GET',
+            headers: {
+                email: user?.email
+            },
+
+        }).then(res =>
+            res.json())
     )
-  )
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+    if (error) {
+        setDataError(error?.message)
+        return;
+    }
 
     return (
         <div className='w-full md:w-11/12 lg:w-2/3 mx-auto my-8'>
@@ -14,24 +31,44 @@ const Orders = () => {
             <table className='table-auto mx-auto mt-8 w-full '>
                 <thead className=''>
                     <tr className='bg-slate-200'>
+                        <th className='break-all text-base py-6'>Serial No</th>
                         <th className='break-all text-base py-6'>Name</th>
                         <th className='break-all text-base py-6'>Quantity</th>
-                        <th className='break-all text-base py-6'>Total Price</th> 
+                        <th className='break-all text-base py-6'>Total Price</th>
                         <th className='break-all text-base py-6'>Transaction ID</th>
                         <th className='break-all text-base py-6'>Pay</th>
                     </tr>
                 </thead>
-                <tr className='border-x-2 border-y-2 py-8'>
-                    <th className='breack-all py-4 bg-slate-100 font-semibold'>1</th>
-                    <td className='breack-all py-4 bg-slate-100 font-semibold'>Cy Ganderton</td>
-                    <td className='breack-all py-4 bg-slate-100 font-semibold'>Cy Ganderton</td>
-                    <td className='breack-all py-4 bg-slate-100 font-semibold'>Cy Ganderton</td>
-                    <td className='breack-all py-4 bg-slate-100 font-semibold'>Cy Ganderton</td>
-                    <td className='breack-all py-4 bg-slate-100 font-semibold'>Cy Ganderton</td>
-                </tr>
+                {
+                    data.map(order => {
+                        return (
+                            <>
+                                <tr className='border-x-2 border-y-2 py-8'>
+                                    <th className='breack-all py-4 bg-slate-100 font-semibold'>1</th>
+                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order.name}</td>
+                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.quantity}</td>
+                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order.totalPrice}</td>
+                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.transactionId}</td>
+                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order.transactionId?<p className='text-primary'>Paid</p>:<>
+                                    <button className='text-primary font-semibold duration-500  hover:bg-gray-300 px-3 rounded'>Pay</button><br />
+                                    <button className='text-red-400 font-semibold duration-500  hover:bg-gray-300 px-3 rounded'>Cancel</button>
+                                    </>}
+                                    </td>
+                                </tr>
+                            
+
+                            </>
+
+                        )
+                    })
+                }
+
             </table>
         </div>
     );
 };
+
+
+
 
 export default Orders;

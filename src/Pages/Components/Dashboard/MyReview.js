@@ -60,8 +60,6 @@ const MyReview = () => {
                 </div>
             </div>
 
-
-            
         </div>
     );
 };

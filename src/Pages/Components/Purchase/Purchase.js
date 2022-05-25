@@ -31,7 +31,6 @@ const Purchase = () => {
         setPartError(error?.message)
         return;
     }
-    // const {name, price, quantity, description, image, minimumOrder} = data;
     const orderQuantity = e => {
         const value = e.target.value;
         if (value < data.minimumOrder || value > data.quantity) {
@@ -53,6 +52,7 @@ const Purchase = () => {
             name: user.displayName,
             email: user.email,
             phone: itemData.number,
+            quantity: sellingQuantity,
             totalPrice: amount,
             userId: user?.uid
         }
@@ -122,7 +122,7 @@ const Purchase = () => {
                                 <span className="label-text">Give quantity</span>
 
                             </label>
-                            <input onChange={orderQuantity} type="number" placeholder="Type here" className="input input-bordered w-1/2 max-w-xs h-10" />
+                            <input onChange={orderQuantity} type="number"  className="input input-bordered w-1/2 max-w-xs h-10" defaultValue={data.minimumOrder}/>
                             <label className="label">
                                 <span className="label-text-alt text-red-400">{partError}</span>
 
