@@ -39,8 +39,10 @@ const AddProducts = () => {
     }
     return (
         <div>
-            <h2 className='text-3xl font-bold text-primary text-center mt-24 mb-12'>ADD A NEW PRODUCTS</h2>
-            <div className='card lg:w-[700px] bg-base-100 shadow-xl mx-auto'>
+            <div className='lg:w-[700px]'>
+            <h2 className='text-3xl font-bold text-primary mt-24 mb-12 lg:ml-[15%]'>ADD A NEW PRODUCTS</h2>
+
+            <div className='card w-full bg-base-100 shadow-xl lg:ml-[15%]  mb-12'>
                 <div className='card-body items-center text-center'>
                     <form className='w-2/3' onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full ">
@@ -139,6 +141,7 @@ const AddProducts = () => {
                         <button className='duration-500 text-black bg-[#94C300] font-bold hover:bg-[#7f9e1c] hover:text-white py-2 px-8 my-8 rounded-3xl text-xl' type="submit" >Submit</button>
                     </form>
                 </div>
+            </div>
             </div>
         </div>
     );

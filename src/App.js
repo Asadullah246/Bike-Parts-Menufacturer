@@ -3,6 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import AddProducts from './Pages/Components/Dashboard/AddProducts';
 import Dashboard from './Pages/Components/Dashboard/Dashboard';
+import MakeAdmin from './Pages/Components/Dashboard/MakeAdmin';
+import ManageOrders from './Pages/Components/Dashboard/ManageOrders';
+import ManageProducts from './Pages/Components/Dashboard/ManageProducts';
 import MyProfile from './Pages/Components/Dashboard/MyProfile';
 import MyReview from './Pages/Components/Dashboard/MyReview';
 import Orders from './Pages/Components/Dashboard/Orders';
@@ -27,6 +30,9 @@ function App() {
           <Route path="myReview" element={<MyReview></MyReview>}></Route>
           <Route path="myProfile" element={<MyProfile></MyProfile>}></Route>
           <Route path="addProducts" element={<AddProducts></AddProducts>}></Route>
+          <Route path="manageOrders" element={<ManageOrders></ManageOrders>}></Route>
+          <Route path="manageProducts" element={<ManageProducts></ManageProducts>}></Route>
+          <Route path="makeAdmin" element={<MakeAdmin></MakeAdmin>}></Route>
         </Route>
       </Routes>
      
