@@ -13,7 +13,7 @@ const Payment = () => {
     const { data: order, isLoading } = useQuery(['orders', id], () => fetch(url, {
         method: 'GET',
         headers: {
-            // 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()));
 
@@ -25,7 +25,6 @@ const Payment = () => {
         <div>
             <div class="card w-50 max-w-md bg-base-100  my-12">
                 <div class="card-body">
-                    {/* <h2 className="text-success font-bold text-3xl">Product Name : {order.itemName}</h2> */}
                     <h2 class="card-title">Product Name : {order.itemName}</h2>
                     <p>Quantity : {order.quantity} </p>
                     <p>Price : {order.totalPrice} </p>

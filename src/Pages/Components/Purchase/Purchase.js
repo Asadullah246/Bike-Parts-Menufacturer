@@ -18,6 +18,9 @@ const Purchase = () => {
     const { isLoading, error, data, refetch } = useQuery(['parts', id], () =>
         fetch(url, {
             method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            }
         }).then(res =>
             res.json())
     )
@@ -187,8 +190,9 @@ const Purchase = () => {
                                 </label>
                             </div>
                             <span>{success} </span>
-                            <span>{success} </span>
-                            <button className='duration-500 text-black bg-[#94C300] font-bold hover:bg-[#7f9e1c] hover:text-white w-full py-3 my-8 rounded-xl text-xl' type="submit" value="Login" >Order</button>
+                            <button className='duration-500 text-black bg-[#94C300] font-bold hover:bg-[#7f9e1c] hover:text-white w-full py-3 my-8 rounded-xl text-xl' type="submit" value="Login" disabled={
+                                !(amount > 0 && sellingQuantity > 0)
+                            } >{amount==0?"disabled": "Order"} </button>
                         </form>
 
                     </div>

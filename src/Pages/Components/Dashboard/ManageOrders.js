@@ -22,6 +22,20 @@ const ManageOrders = () => {
      if(error){
          return setOrdersError(error?.message)
      }
+     const deliver=id=>{
+            const url = `http://localhost:5000/orders/${id}`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "application-type": "application/json",
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            }).then(res =>
+                res.json()
+            ).then(data => {
+               
+            })
+     }
     
     return (
         
@@ -52,8 +66,8 @@ const ManageOrders = () => {
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.quantity}</td>
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.totalPrice}</td>
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.transactionId}</td>
-                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.transactionId?<p className='text-primary'>Paid</p>:<>
-                                    <button className='text-primary font-semibold duration-500  hover:bg-gray-300 px-3 rounded'>Pay</button><br />
+                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.transactionId? <button onClick={()=>deliver(order._id)}>pending</button>:<>
+                                    
                                     <button className='text-red-400 font-semibold duration-500  hover:bg-gray-300 px-3 rounded'>Cancel</button>
                                     </>}
                                     </td>

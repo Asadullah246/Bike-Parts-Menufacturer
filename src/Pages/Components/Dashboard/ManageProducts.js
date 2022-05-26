@@ -5,7 +5,7 @@ import Loading from '../../Shared/Loading';
 const ManageProducts = () => {
     const [partsError, setPartsError] = useState("");
 
-    const { isLoading, error, data } = useQuery('parts', () =>
+    const { isLoading, error, data, refetch } = useQuery('parts', () =>
     fetch('http://localhost:5000/parts').then(res =>
       res.json()
     )
@@ -16,6 +16,24 @@ const ManageProducts = () => {
 if(error){
     setPartsError(error?.message)
 
+}
+const deleteItem=id=>{
+    const url = `http://localhost:5000/parts/${id}`;
+    fetch(url, {
+        method: 'DELETE',
+        headers: {
+            // 'content-type': 'application/json',
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        }
+    }).then(res=>res.json())
+    .then(data=>{
+        refetch()
+        console.log(data);
+    })
+    .catch(err=>{
+        console.log(err?.message);
+    })
+    
 }
     return (
         <div className='w-full xs:mx-auto sm:mx-auto md:mx-auto md:w-11/12 lg:w-2/3 lg:ml-[10%]  my-8'>
@@ -45,10 +63,9 @@ if(error){
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.quantity}</td>
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.totalPrice}</td>
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.transactionId}</td>
-                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.transactionId?<p className='text-primary'>Paid</p>:<>
-                                    <button className='text-primary font-semibold duration-500  hover:bg-gray-300 px-3 rounded'>Pay</button><br />
-                                    <button className='text-red-400 font-semibold duration-500  hover:bg-gray-300 px-3 rounded'>Cancel</button>
-                                    </>}
+                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>
+                                    <button className='text-red-400 font-semibold duration-500  hover:bg-gray-300 px-3 rounded' onClick={()=>deleteItem(order._id)}>delete</button>
+                                    
                                     </td>
                                 </tr>
                             

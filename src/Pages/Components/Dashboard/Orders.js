@@ -14,6 +14,7 @@ const Orders = () => {
         fetch('http://localhost:5000/orders', {
             method: 'GET',
             headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                 email: user?.email
             },
 
@@ -36,6 +37,7 @@ const Orders = () => {
         fetch(`http://localhost:5000/orders/${id}`, {
             method: 'DELETE',
             headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                 email: user?.email
             },
 
@@ -87,7 +89,7 @@ const Orders = () => {
                                                 <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                                                 <h3 class="text-lg font-bold">Congratulations random Interner user!</h3>
                                                 <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-                                                <button onClick={()=>deleteOrder(order._id)}>Delete</button>
+                                                <button  className='text-red-400 font-semibold duration-500  hover:bg-gray-300 px-3 rounded' onClick={()=>deleteOrder(order._id)}>Delete</button>
                                             </div>
                                         </div>
                                     </>}

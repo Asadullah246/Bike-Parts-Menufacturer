@@ -8,6 +8,7 @@ const MakeAdmin = () => {
         fetch('http://localhost:5000/users/',{
             method: 'GET',
             headerr:{
+                
                 'content-type': 'application/json',
             }
         })
