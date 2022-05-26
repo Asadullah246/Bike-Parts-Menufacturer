@@ -14,6 +14,7 @@ import Payment from './Pages/Components/Dashboard/Payment';
 import Home from './Pages/Components/Home/Home';
 import Login from './Pages/Components/Login/Login';
 import SignUp from './Pages/Components/Login/SignUp';
+import NotFound from './Pages/Components/NotFound/NotFound';
 import Portfolio from './Pages/Components/Portfolio/Portfolio';
 import Purchase from './Pages/Components/Purchase/Purchase';
 import Navbar from './Pages/Shared/Navbar/Navbar';
@@ -41,6 +42,7 @@ function App() {
         </Route>
         <Route path='blogs' element={<Blogs></Blogs>}></Route>
         <Route path='portfolio' element={<Portfolio></Portfolio>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
 
      
