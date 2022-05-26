@@ -15,7 +15,7 @@ const AddProducts = () => {
             image: data.image
         }
         console.log(body);
-        fetch("http://localhost:5000/parts", {
+        fetch("https://mysterious-atoll-50879.herokuapp.com/parts", {
             method: 'POST',
             headers: {
                 

@@ -5,7 +5,7 @@ import Loading from '../../Shared/Loading';
 const MakeAdmin = () => {
     const [userError, setUserError]=useState("")
     const { isLoading, error, data, refetch } = useQuery('users', () =>
-        fetch('http://localhost:5000/users/',{
+        fetch('https://mysterious-atoll-50879.herokuapp.com/users/',{
             method: 'GET',
             headerr:{
                 
@@ -25,7 +25,7 @@ const MakeAdmin = () => {
     }
 
  const makeAdmin=email=>{
-        fetch(`http://localhost:5000/users/admin/${email}`, {
+        fetch(`https://mysterious-atoll-50879.herokuapp.com/users/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

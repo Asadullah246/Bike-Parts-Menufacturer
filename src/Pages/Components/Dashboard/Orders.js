@@ -11,7 +11,7 @@ const Orders = () => {
     const [dataError, setDataError] = useState("");
     const [user,loading] = useAuthState(auth);
     const { isLoading, error, data, refetch } = useQuery('manageOrders', () =>
-        fetch('http://localhost:5000/orders', {
+        fetch('https://mysterious-atoll-50879.herokuapp.com/orders', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`,
@@ -34,7 +34,7 @@ const Orders = () => {
         navigate(`/dashboard/payment/${id}`)
     }
     const deleteOrder = id => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://mysterious-atoll-50879.herokuapp.com/orders/${id}`, {
             method: 'DELETE',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`,

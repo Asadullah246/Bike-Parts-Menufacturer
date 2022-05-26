@@ -6,7 +6,7 @@ const ManageProducts = () => {
     const [partsError, setPartsError] = useState("");
 
     const { isLoading, error, data, refetch } = useQuery('parts', () =>
-    fetch('http://localhost:5000/parts').then(res =>
+    fetch('https://mysterious-atoll-50879.herokuapp.com/parts').then(res =>
       res.json()
     )
   )
@@ -18,7 +18,7 @@ if(error){
 
 }
 const deleteItem=id=>{
-    const url = `http://localhost:5000/parts/${id}`;
+    const url = `https://mysterious-atoll-50879.herokuapp.com/parts/${id}`;
     fetch(url, {
         method: 'DELETE',
         headers: {

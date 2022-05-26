@@ -8,7 +8,7 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe('pk_test_51L0j6aDZSfscydCvyyzWeKWGIH1V4Z6vvtM2MwLwtdtmZHhWbnA5xfuZNYbRLRhkbBc9bgJ5adq6s7DKRbQQCUFC00fPnmRaCz');
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/orders/${id}`;
+    const url = `https://mysterious-atoll-50879.herokuapp.com/orders/${id}`;
 
     const { data: order, isLoading } = useQuery(['orders', id], () => fetch(url, {
         method: 'GET',

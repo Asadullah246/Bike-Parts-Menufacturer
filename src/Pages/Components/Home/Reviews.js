@@ -5,7 +5,7 @@ const Reviews = () => {
   const [error, setError] = useState('');
     const [reviews, setReviews] = useState([])
       useEffect( ()=>{
-        fetch("http://localhost:5000/reviews")
+        fetch("https://mysterious-atoll-50879.herokuapp.com/reviews")
         .then(res=>res.json())
         .then(data=>setReviews(data))
           .catch(err=>setError(err.message))

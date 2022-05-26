@@ -7,7 +7,7 @@ const ManageOrders = () => {
     const [ordersError, setOrdersError] = useState("");
 
     const { isLoading, error, data, refetch } = useQuery('allOrders', () =>
-     fetch('http://localhost:5000/allOrders',{
+     fetch('https://mysterious-atoll-50879.herokuapp.com/allOrders',{
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -23,7 +23,7 @@ const ManageOrders = () => {
          return setOrdersError(error?.message)
      }
      const deliver=id=>{
-            const url = `http://localhost:5000/orders/${id}`;
+            const url = `https://mysterious-atoll-50879.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {

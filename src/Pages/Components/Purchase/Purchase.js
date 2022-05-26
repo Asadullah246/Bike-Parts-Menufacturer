@@ -14,7 +14,7 @@ const Purchase = () => {
     const [user] = useAuthState(auth)
     const [sellingQuantity, setSellingQuantity] = useState(0);
 
-    const url = `http://localhost:5000/parts/${id}`;
+    const url = `https://mysterious-atoll-50879.herokuapp.com/parts/${id}`;
     const { isLoading, error, data, refetch } = useQuery(['parts', id], () =>
         fetch(url, {
             method: 'GET',
@@ -50,7 +50,7 @@ const Purchase = () => {
     }
 
     const onSubmit = async (itemData) => {
-        const url = "http://localhost:5000/orders";
+        const url = "https://mysterious-atoll-50879.herokuapp.com/orders";
         const order = {
             name: user.displayName,
             itemName: data.name,
@@ -76,7 +76,7 @@ const Purchase = () => {
                     const body = {
                         quantity: parseInt(data.quantity) - parseInt(sellingQuantity),
                     }
-                    fetch(`http://localhost:5000/parts/${id}`, {
+                    fetch(`https://mysterious-atoll-50879.herokuapp.com/parts/${id}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json'

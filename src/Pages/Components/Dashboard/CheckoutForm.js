@@ -11,7 +11,7 @@ const CheckoutForm = ({order}) => {
 
     const { _id, totalPrice, name, email } = order;
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://mysterious-atoll-50879.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -79,7 +79,7 @@ const CheckoutForm = ({order}) => {
                 appointment: _id,
                 transactionId: paymentIntent.id
             }
-            fetch(`http://localhost:5000/manageOrder/${_id}`, {
+            fetch(`https://mysterious-atoll-50879.herokuapp.com/manageOrder/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

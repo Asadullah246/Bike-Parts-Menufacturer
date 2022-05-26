@@ -17,7 +17,7 @@ const MyProfile = () => {
         }
         console.log(userData);
 
-        fetch(`http://localhost:5000/updated/${email}`, {
+        fetch(`https://mysterious-atoll-50879.herokuapp.com/updated/${email}`, {
             method: 'PUT',
             headers: {
                 "application-type": "application/json",
