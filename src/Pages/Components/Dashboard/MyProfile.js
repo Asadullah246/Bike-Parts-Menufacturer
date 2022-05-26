@@ -1,22 +1,44 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import auth from '../../../Firebase.init';
 import image1 from "../../../Images/others/Banner.jpg"
 
 const MyProfile = () => {
+    const [user] = useAuthState(auth)
     const { register, handleSubmit, formState: { errors }, } = useForm();
+    const email = user?.email;
     const onSubmit = async data => {
-        // await createUserWithEmailAndPassword(data.email, data.password);
-        // await updateProfile({ displayName: data.name });
-        // console.log('update done');
+        const userData={
+            education: data.Education,
+            address:data.address,
+            linkedin:data.linkedin,
+            image:data.picture
+        }
+        console.log(userData);
+
+        fetch(`http://localhost:5000/updated/${email}`, {
+            method: 'PUT',
+            headers: {
+                "application-type": "application/json",
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(res =>res.json())
+            .then(data => {
+                console.log(data);
+            })
+
     }
-    const img='';
+ const img=""
 
     return (
         <div className=''>
             <div className='my-24 lg:w-[700px] lg:ml-[10%]'>
                 {
-                    img? <img className='h-24 w-24 rounded-full mx-auto ' src={image1} alt="" />:
-                    <h3 className='py-8 w-24 rounded-full mx-auto bg-primary text-white text-3xl'> User</h3>
+                    img ? <img className='h-24 w-24 rounded-full mx-auto ' src={image1} alt="" /> :
+                        <h3 className='py-8 w-24 rounded-full mx-auto bg-primary text-white text-3xl'> User</h3>
                 }
                 <h2 className='text-3xl font-bold mt-6 mb-2'>Name</h2>
                 <p className='font-semibold'>asadmdjfkdjf@gamil.com</p>
@@ -45,7 +67,7 @@ const MyProfile = () => {
                                 <label className="label">
                                     <span className="label-text">Address</span>
                                 </label>
-                                <input type='text' placeholder="Type here" name='address' className="input input-bordered w-full" 
+                                <input type='text' placeholder="Type here" name='address' className="input input-bordered w-full"
                                     {...register("address", {
                                         required: {
                                             value: true,
@@ -86,8 +108,8 @@ const MyProfile = () => {
                                     {errors.picture?.type === 'required' && <span className="label-text-alt text-red-500">{errors.picture.message}</span>}
                                 </label>
                             </div>
-                           
-                            <button className='duration-500 text-black bg-[#94C300] font-bold hover:bg-[#7f9e1c] hover:text-white py-2 px-8 my-8 rounded-3xl text-xl' type="submit" >Update</button>
+
+                            <button className='duration-500 text-black bg-[#94C300] font-bold hover:bg-[#7f9e1c] hover:text-white py-2 px-8 my-8 rounded-3xl text-xl' type="submit"  >Update</button>
                         </form>
                     </div>
                 </div>
