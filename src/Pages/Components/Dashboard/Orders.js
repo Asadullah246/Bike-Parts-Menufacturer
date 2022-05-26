@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../Firebase.init';
-import Loading from '../../Shared/Navbar/Loading';
+import Loading from '../../Shared/Loading';
 
 const Orders = () => {
     const navigate = useNavigate()

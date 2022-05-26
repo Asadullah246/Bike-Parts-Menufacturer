@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import Loading from '../../Shared/Navbar/Loading';
+import Loading from '../../Shared/Loading';
 
 const ManageProducts = () => {
     const [partsError, setPartsError] = useState("");

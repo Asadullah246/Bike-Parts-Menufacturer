@@ -4,7 +4,7 @@ import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerificati
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../Firebase.init';
-import Loading from '../../Shared/Navbar/Loading';
+import Loading from '../../Shared/Loading';
 import useToken from '../../Shared/useToken';
 
 const SignUp = () => {

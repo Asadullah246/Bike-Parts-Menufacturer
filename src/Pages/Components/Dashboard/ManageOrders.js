@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
-import Loading from '../../Shared/Navbar/Loading';
+import Loading from '../../Shared/Loading';
 
 const ManageOrders = () => {
     const queryClient = useQueryClient()

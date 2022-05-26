@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import auth from '../../../Firebase.init';
-import Loading from '../../Shared/Navbar/Loading';
+import Loading from '../../Shared/Loading';
 
 const Purchase = () => {
     const { id } = useParams();
