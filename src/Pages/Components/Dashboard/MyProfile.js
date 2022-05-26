@@ -15,8 +15,7 @@ const MyProfile = () => {
             linkedin:data.linkedin,
             image:data.picture
         }
-        console.log(userData);
-
+   
         fetch(`https://mysterious-atoll-50879.herokuapp.com/updated/${email}`, {
             method: 'PUT',
             headers: {

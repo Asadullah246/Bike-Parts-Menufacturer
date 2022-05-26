@@ -10,6 +10,7 @@ const MakeAdmin = () => {
             headerr:{
                 
                 'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
         .then(res =>
@@ -29,6 +30,7 @@ const MakeAdmin = () => {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             // body:JSON.stringify({admin:true})
         })
@@ -68,7 +70,7 @@ const MakeAdmin = () => {
 
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>
                                         {
-                                            !user.role && <button className='text-primary font-semibold duration-500  hover:bg-gray-300 px-3 rounded' onClick={()=>makeAdmin(user.email)}>Make Admin</button>
+                                            !user.role && <button className='text-primary font-semibold duration-500  hover:bg-gray-300 px-3 rounded' onClick={()=>makeAdmin(user?.email)}>Make Admin</button>
                                         }
                                     </td>
                                 </tr>

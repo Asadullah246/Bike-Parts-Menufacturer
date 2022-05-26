@@ -18,6 +18,7 @@ import NotFound from './Pages/Components/NotFound/NotFound';
 import Portfolio from './Pages/Components/Portfolio/Portfolio';
 import Purchase from './Pages/Components/Purchase/Purchase';
 import Navbar from './Pages/Shared/Navbar/Navbar';
+import RequireAdmin from './Pages/Shared/RequireAdmin';
 import RequireAuth from './Pages/Shared/RequreAuth';
 
 function App() {
@@ -34,10 +35,10 @@ function App() {
           <Route index element={<RequireAuth><Orders></Orders></RequireAuth>}></Route>
           <Route path="myReview" element={<RequireAuth><MyReview></MyReview></RequireAuth>}></Route>
           <Route path="myProfile" element={<RequireAuth><MyProfile></MyProfile></RequireAuth>}></Route>
-          <Route path="addProducts" element={<RequireAuth><AddProducts></AddProducts></RequireAuth>}></Route>
-          <Route path="manageOrders" element={<RequireAuth><ManageOrders></ManageOrders></RequireAuth>}></Route>
-          <Route path="manageProducts" element={<RequireAuth><ManageProducts></ManageProducts></RequireAuth>}></Route>
-          <Route path="makeAdmin" element={<RequireAuth><MakeAdmin></MakeAdmin></RequireAuth>}></Route>
+          <Route path="addProducts" element={<RequireAdmin><AddProducts></AddProducts></RequireAdmin>}></Route>
+          <Route path="manageOrders" element={<RequireAdmin><ManageOrders></ManageOrders></RequireAdmin>}></Route>
+          <Route path="manageProducts" element={<RequireAdmin><ManageProducts></ManageProducts></RequireAdmin>}></Route>
+          <Route path="makeAdmin" element={<RequireAdmin><MakeAdmin></MakeAdmin></RequireAdmin>}></Route>
           <Route path="payment/:id" element={<RequireAuth><Payment></Payment></RequireAuth>}></Route>
         </Route>
         <Route path='blogs' element={<Blogs></Blogs>}></Route>
