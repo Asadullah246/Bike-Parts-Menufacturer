@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../Firebase.init';
 import Loading from '../../Shared/Navbar/Loading';
+import useToken from '../../Shared/useToken';
 
 const Login = () => {
     const [signInError, setSignInError] = useState('');
@@ -20,6 +21,14 @@ const Login = () => {
         const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const {
         register,handleSubmit,formState: { errors },} = useForm();
+        const [token] = useToken(user || gUser ||eUser);
+        // console.log(token);
+
+        useEffect( () =>{
+            if (token) {
+                navigate(from, { replace: true });
+            }
+        }, [token, from, navigate])
 
         if(loading||gLoading||eLoading){
             return <Loading></Loading>
@@ -28,10 +37,13 @@ const Login = () => {
             setSignInError(error?.message||gError?.message||eError?.message)
             return;
         }
-        if(user){
-            navigate(from, { replace: true });
+        
+        
+        // if(user){
+        //     navigate(from, { replace: true });
            
-        }
+        // }
+      
 
         const googleLogin=async=>{
             signInWithGoogle();
@@ -40,7 +52,7 @@ const Login = () => {
 
         const onSubmit = async data => {
           await  signInWithEmailAndPassword(data.email, data.password);
-            await setSuccess("Successfully logged in");
+             setSuccess("Successfully logged in");
            
         }
 

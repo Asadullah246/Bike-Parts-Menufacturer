@@ -1,10 +1,11 @@
 import { updateProfile } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../Firebase.init';
 import Loading from '../../Shared/Navbar/Loading';
+import useToken from '../../Shared/useToken';
 
 const SignUp = () => {
     const [signUpError, setSignUpError] = useState('');
@@ -20,6 +21,15 @@ const SignUp = () => {
     const [sendEmailVerification, sending, sendingError] = useSendEmailVerification(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+    const [token] = useToken(user || gUser ||eUser);
+        
+
+        useEffect( () =>{
+            if (token) {
+                navigate(from, { replace: true });
+            }
+        }, [token, from, navigate])
+
     if(loading||gLoading||eLoading||updating){
         return <Loading></Loading>
     }
@@ -30,9 +40,6 @@ const SignUp = () => {
     const googleLogin=async=>{
         signInWithGoogle();
         setSuccess("Successfully logged in with Google");
-    }
-    if(user){
-        navigate(from, { replace: true });
     }
 
     const onSubmit = async data => {

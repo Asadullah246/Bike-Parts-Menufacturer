@@ -54,6 +54,11 @@
         "quantity": 100,
         "minimumOrder": 4,
         "image":"https://i.ibb.co/C2stpZ2/11-400x300.jpg"
+    },
+    {
+       
+        "emali": "asadullahmd242@gmail.com",
+        "role": "admin"  
     }
 
 ]
