@@ -50,12 +50,15 @@ const Purchase = () => {
         const url = "http://localhost:5000/orders";
         const order = {
             name: user.displayName,
+            itemName: data.name,
             email: user.email,
             phone: itemData.number,
             quantity: sellingQuantity,
             totalPrice: amount,
-            userId: user?.uid
+            image: data.image,
+            productId:id 
         }
+        
         await fetch(url, {
             method: 'POST',
             headers: {
@@ -70,7 +73,6 @@ const Purchase = () => {
                     const body = {
                         quantity: parseInt(data.quantity) - parseInt(sellingQuantity),
                     }
-                    console.log("bou", data.quantity, "and", sellingQuantity);
                     fetch(`http://localhost:5000/parts/${id}`, {
                         method: 'PUT',
                         headers: {

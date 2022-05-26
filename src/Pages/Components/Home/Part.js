@@ -1,7 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../../Hooks/useButton';
-import useButton from '../../../Hooks/useButton';
 
 const Part = ({ part }) => {
     const { name, image, price, description,_id } = part;

@@ -9,6 +9,7 @@ import ManageProducts from './Pages/Components/Dashboard/ManageProducts';
 import MyProfile from './Pages/Components/Dashboard/MyProfile';
 import MyReview from './Pages/Components/Dashboard/MyReview';
 import Orders from './Pages/Components/Dashboard/Orders';
+import Payment from './Pages/Components/Dashboard/Payment';
 import Home from './Pages/Components/Home/Home';
 import Login from './Pages/Components/Login/Login';
 import SignUp from './Pages/Components/Login/SignUp';
@@ -33,6 +34,7 @@ function App() {
           <Route path="manageOrders" element={<ManageOrders></ManageOrders>}></Route>
           <Route path="manageProducts" element={<ManageProducts></ManageProducts>}></Route>
           <Route path="makeAdmin" element={<MakeAdmin></MakeAdmin>}></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
         </Route>
       </Routes>
      
