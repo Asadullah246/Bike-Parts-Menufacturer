@@ -6,7 +6,7 @@ const ManageOrders = () => {
     const queryClient = useQueryClient()
     const [ordersError, setOrdersError] = useState("");
 
-    const { isLoading, error, data } = useQuery('allOrders', () =>
+    const { isLoading, error, data, refetch } = useQuery('allOrders', () =>
      fetch('http://localhost:5000/allOrders',{
         method: 'GET',
         headers: {
@@ -33,7 +33,11 @@ const ManageOrders = () => {
             }).then(res =>
                 res.json()
             ).then(data => {
+                refetch()
                
+            })
+            .catch(err => {
+                console.log(err);
             })
      }
     
@@ -66,12 +70,18 @@ const ManageOrders = () => {
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.quantity}</td>
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.totalPrice}</td>
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.transactionId}</td>
-                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.transactionId? <button onClick={()=>deliver(order._id)}>pending</button>:<>
-                                    
-                                    <button className='text-red-400 font-semibold duration-500  hover:bg-gray-300 px-3 rounded'>Cancel</button>
+                                    <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.transactionId? 
+                                    <>
+                                    {
+                                        order.status? <p>delivered</p>:<button onClick={()=>deliver(order._id)} className='text-primary font-semibold duration-500  hover:bg-gray-300 px-3 rounded'>pending</button>
+                                    }
+                                    </>
+                                    :<>
+                                     <button className='text-red-400 font-semibold duration-500  hover:bg-gray-300 px-3 rounded'> </button>
                                     </>}
                                     </td>
                                 </tr>
+                                
                             
 
                             </>
