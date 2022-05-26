@@ -51,7 +51,7 @@ const Navbar = () => {
                     <li><NavLink style={actived} to='/makeAdmin'>Make Admin</NavLink></li>
                     <li><NavLink style={actived} to='/manageProducts'>Manage Products</NavLink></li>
                     <li><NavLink style={actived} to='/blogs'>Blogs</NavLink></li>
-                    <li><NavLink style={actived} to='/aboutMe'>About Me</NavLink></li>
+                    <li><NavLink style={actived} to='/portfolio'>About Me</NavLink></li>
                 </ul>
             </div>
             <div className="navbar-end lg:pr-8 lg:hidden">

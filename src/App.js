@@ -1,6 +1,7 @@
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Blogs from './Pages/Components/Blogs/Blogs';
 import AddProducts from './Pages/Components/Dashboard/AddProducts';
 import Dashboard from './Pages/Components/Dashboard/Dashboard';
 import MakeAdmin from './Pages/Components/Dashboard/MakeAdmin';
@@ -13,6 +14,7 @@ import Payment from './Pages/Components/Dashboard/Payment';
 import Home from './Pages/Components/Home/Home';
 import Login from './Pages/Components/Login/Login';
 import SignUp from './Pages/Components/Login/SignUp';
+import Portfolio from './Pages/Components/Portfolio/Portfolio';
 import Purchase from './Pages/Components/Purchase/Purchase';
 import Navbar from './Pages/Shared/Navbar/Navbar';
 
@@ -36,7 +38,10 @@ function App() {
           <Route path="makeAdmin" element={<MakeAdmin></MakeAdmin>}></Route>
           <Route path="payment/:id" element={<Payment></Payment>}></Route>
         </Route>
+        <Route path='blogs' element={<Blogs></Blogs>}></Route>
+        <Route path='portfolio' element={<Portfolio></Portfolio>}></Route>
       </Routes>
+
      
     </div>
   );
