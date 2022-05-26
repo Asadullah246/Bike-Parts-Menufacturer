@@ -7,17 +7,15 @@ const MyReview = () => {
     const btn=useButton({children:"Submit"})
     const { register,handleSubmit,formState: { errors },} = useForm();
     const onSubmit = async data => {
-        // await createUserWithEmailAndPassword(data.email, data.password);
-        // await updateProfile({ displayName: data.name });
-        // console.log('update done');
+    
     }
     const ratingChanged = (newRating) => {
             console.log(newRating);
           };
     return (
-        <div>
+        <div className='xs:mx-auto sm:mx-auto md:mx-auto lg:w-[700px] ml-[10%]'>
             <h1 className='text-3xl font-bold text-center mt-24 mb-12'>Please give your valuable feedback</h1>
-            <div className='card lg:w-[700px] bg-base-100 shadow-xl mx-auto'>
+            <div className='card w-full bg-base-100 shadow-xl '>
                 <div className='card-body items-center text-center'>
                     <form  className='w-2/3' onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full ">

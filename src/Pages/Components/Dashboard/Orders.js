@@ -50,7 +50,7 @@ const Orders = () => {
 
 
     return (
-        <div className='w-full md:w-11/12 lg:w-2/3 mx-auto my-8'>
+        <div className='w-full xs:mx-auto sm:mx-auto md:mx-auto md:w-11/12 lg:w-2/3 lg:ml-[10%] my-8'>
             <h3 className='text-3xl font-bold text-primary text-center my-8'>MY ORDERS</h3>
 
 
@@ -67,11 +67,12 @@ const Orders = () => {
                 </thead>
                 {
                     data.map(order => {
+                        let indexIs= data.indexOf(order) +1;
                         return (
                             <>
 
                                 <tr className='border-x-2 border-y-2 py-8'>
-                                    <th className='breack-all py-4 bg-slate-100 font-semibold'>1</th>
+                                    <th className='breack-all py-4 bg-slate-100 font-semibold'>{indexIs} </th>
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order.name}</td>
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order?.quantity}</td>
                                     <td className='breack-all py-4 bg-slate-100 font-semibold'>{order.totalPrice}</td>

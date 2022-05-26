@@ -16,7 +16,7 @@ const CheckoutForm = ({order}) => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                // 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify({ totalPrice })
         })
@@ -50,7 +50,8 @@ const CheckoutForm = ({order}) => {
         setCardError(error?.message || '')
         setSuccess('');
         setProcessing(true);
-        // confirm card payment
+       
+        
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
             clientSecret,
             {
@@ -83,7 +84,7 @@ const CheckoutForm = ({order}) => {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
-                    // 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(payment)
             }).then(res=>res.json())

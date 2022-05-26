@@ -17,6 +17,7 @@ import SignUp from './Pages/Components/Login/SignUp';
 import Portfolio from './Pages/Components/Portfolio/Portfolio';
 import Purchase from './Pages/Components/Purchase/Purchase';
 import Navbar from './Pages/Shared/Navbar/Navbar';
+import RequireAuth from './Pages/Shared/RequreAuth';
 
 function App() {
  
@@ -27,16 +28,16 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/:id" element={<Purchase></Purchase>}></Route>
-        <Route path="/dashboard" element={<Dashboard></Dashboard>}>
-          <Route index element={<Orders></Orders>}></Route>
-          <Route path="myReview" element={<MyReview></MyReview>}></Route>
-          <Route path="myProfile" element={<MyProfile></MyProfile>}></Route>
-          <Route path="addProducts" element={<AddProducts></AddProducts>}></Route>
-          <Route path="manageOrders" element={<ManageOrders></ManageOrders>}></Route>
-          <Route path="manageProducts" element={<ManageProducts></ManageProducts>}></Route>
-          <Route path="makeAdmin" element={<MakeAdmin></MakeAdmin>}></Route>
-          <Route path="payment/:id" element={<Payment></Payment>}></Route>
+        <Route path="/:id" element={<RequireAuth><Purchase></Purchase></RequireAuth>}></Route>
+        <Route path="/dashboard" element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
+          <Route index element={<RequireAuth><Orders></Orders></RequireAuth>}></Route>
+          <Route path="myReview" element={<RequireAuth><MyReview></MyReview></RequireAuth>}></Route>
+          <Route path="myProfile" element={<RequireAuth><MyProfile></MyProfile></RequireAuth>}></Route>
+          <Route path="addProducts" element={<RequireAuth><AddProducts></AddProducts></RequireAuth>}></Route>
+          <Route path="manageOrders" element={<RequireAuth><ManageOrders></ManageOrders></RequireAuth>}></Route>
+          <Route path="manageProducts" element={<RequireAuth><ManageProducts></ManageProducts></RequireAuth>}></Route>
+          <Route path="makeAdmin" element={<RequireAuth><MakeAdmin></MakeAdmin></RequireAuth>}></Route>
+          <Route path="payment/:id" element={<RequireAuth><Payment></Payment></RequireAuth>}></Route>
         </Route>
         <Route path='blogs' element={<Blogs></Blogs>}></Route>
         <Route path='portfolio' element={<Portfolio></Portfolio>}></Route>

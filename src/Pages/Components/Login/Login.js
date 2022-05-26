@@ -22,7 +22,6 @@ const Login = () => {
     const {
         register,handleSubmit,formState: { errors },} = useForm();
         const [token] = useToken(user || gUser ||eUser);
-        // console.log(token);
 
         useEffect( () =>{
             if (token) {
@@ -37,14 +36,7 @@ const Login = () => {
             setSignInError(error?.message||gError?.message||eError?.message)
             return;
         }
-        
-        
-        // if(user){
-        //     navigate(from, { replace: true });
-           
-        // }
-      
-
+    
         const googleLogin=async=>{
             signInWithGoogle();
             setSuccess("Successfully logged in with Google");

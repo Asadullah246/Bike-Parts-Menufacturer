@@ -12,8 +12,8 @@ const MyProfile = () => {
     const img='';
 
     return (
-        <div>
-            <div className='my-24'>
+        <div className=''>
+            <div className='my-24 lg:w-[700px] lg:ml-[10%]'>
                 {
                     img? <img className='h-24 w-24 rounded-full mx-auto ' src={image1} alt="" />:
                     <h3 className='py-8 w-24 rounded-full mx-auto bg-primary text-white text-3xl'> User</h3>
@@ -21,9 +21,9 @@ const MyProfile = () => {
                 <h2 className='text-3xl font-bold mt-6 mb-2'>Name</h2>
                 <p className='font-semibold'>asadmdjfkdjf@gamil.com</p>
             </div>
-            <div>
+            <div className='lg:w-[700px] lg:ml-[10%]'>
                 <h3 className='text-3xl font-bold my-6'>Update your profile</h3>
-                <div className='card lg:w-[700px] bg-base-100 shadow-xl mx-auto'>
+                <div className='card  bg-base-100  shadow-xl'>
                     <div className='card-body items-center text-center'>
                         <form className='w-2/3' onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control w-full ">

@@ -39,10 +39,10 @@ const AddProducts = () => {
     }
     return (
         <div>
-            <div className='lg:w-[700px]'>
+            <div className='lg:w-[700px] xs:mx-auto sm:mx-auto md:mx-auto'>
             <h2 className='text-3xl font-bold text-primary mt-24 mb-12 lg:ml-[15%]'>ADD A NEW PRODUCTS</h2>
 
-            <div className='card w-full bg-base-100 shadow-xl lg:ml-[15%]  mb-12'>
+            <div className='card w-full bg-base-100 shadow-xl lg:ml-[15%] xs:mx-auto sm:mx-auto md:mx-auto  mb-12'>
                 <div className='card-body items-center text-center'>
                     <form className='w-2/3' onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full ">

@@ -7,7 +7,7 @@ import navLogo from "./../../../Images/Logos/NavbarLogo.png"
 
 const Navbar = () => {
     const[user]=useAuthState(auth);
-    const [admin]=useAdmin(user)
+    // const [admin]=useAdmin(user)
     const actived = ({ isActive }) => {
         return {
             color: isActive ? '#94C300' : 'black',

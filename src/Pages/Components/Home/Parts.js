@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import Loading from '../../Shared/Loading';
+
 import Part from './Part';
 
 const Parts = () => {
@@ -8,7 +9,9 @@ const Parts = () => {
     const queryClient = useQueryClient()
 
     const { isLoading, error, data } = useQuery('repoData', () =>
-     fetch('http://localhost:5000/parts').then(res =>
+     fetch('http://localhost:5000/parts',{
+         
+     }).then(res =>
        res.json()
      )
    )

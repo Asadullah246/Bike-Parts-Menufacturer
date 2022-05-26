@@ -1,4 +1,4 @@
-import { updateProfile } from 'firebase/auth';
+
 import React, { useEffect, useState } from 'react';
 import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -22,7 +22,6 @@ const SignUp = () => {
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     const [token] = useToken(user || gUser ||eUser);
-        
 
         useEffect( () =>{
             if (token) {

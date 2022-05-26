@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import ReactStars from 'react-rating-stars-component';
 import Review from './Review';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
-        // const [rating, setRating] = useState(0);
       useEffect( ()=>{
         fetch("Reviews.json")
         .then(res=>res.json())
@@ -12,10 +10,6 @@ const Reviews = () => {
           .catch(err=>console.log(err))
       },[])
 
-    //   const ratingChanged = (newRating) => {
-    //     console.log(newRating);
-    //   };
-     
     return (
        <div className='bg-base-200 pb-20'>
            <h2 className='text-3xl font-bold text-primary text-center pb-12'>OUR BUYER COMMENTS</h2>
