@@ -19,7 +19,7 @@ const MyProfile = () => {
         fetch(`https://mysterious-atoll-50879.herokuapp.com/updated/${email}`, {
             method: 'PUT',
             headers: {
-                "application-type": "application/json",
+                "content-type": "application/json",
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(userData)
